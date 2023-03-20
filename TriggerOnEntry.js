@@ -58,7 +58,7 @@ if(stat == "Order Received" || stat == "Preparing Order")
     if(e.field("Item 2 Name").length != 0)
     {
         orderList = orderList + "\n"
-        + e.field("Item 2 Name").length + " ~ ₱" 
+        + e.field("Item 2 Name") + " ~ ₱" 
         + e.field("Price 2") + " ~ " 
         + e.field("QTY 2") + " = ₱"
         + e.field("Price 2")*e.field("QTY 2");
@@ -179,4 +179,7 @@ else if(stat == "Delivered - Unpaid")
 }
 
 //Open Android SMS application with pre-filled message body
-con.sendSMS(msg);
+if(stat != "Delivered - Paid")
+{
+    con.sendSMS(msg);
+}
